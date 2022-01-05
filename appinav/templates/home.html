@@ -1,0 +1,15 @@
+{% extends 'layout.html' %}
+{% block content %}
+    <h1>Ho!</h1>
+
+<form action="" method="post">
+    {{ my_amazing_form.csrf_token }}
+    {{ my_amazing_form.first_name.label }}
+    {{ my_amazing_form.first_name }}
+    {{ my_amazing_form.submit_button.label }}
+    {{ my_amazing_form.submit_button }}
+</form>
+
+{{ new_var }}
+
+{% endblock content %}
