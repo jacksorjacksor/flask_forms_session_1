@@ -1,0 +1,8 @@
+{% extends 'layout.html' %}
+{% block content %}
+    {% for user in list_of_users %}
+        <a href="{{url_for('filter_by', my_variable=user.username)}}">
+            <p>{{ user.username }}</p>
+        </a>
+    {% endfor %}
+{% endblock %}  

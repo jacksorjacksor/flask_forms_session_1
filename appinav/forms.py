@@ -10,5 +10,5 @@ Form with:
 - Submit button (submit)
 '''
 class MyForm(FlaskForm):
-    first_name = StringField(label="Label First name")
-    submit_button = SubmitField(label="Label Submit button")
+    username = StringField(label="Username")
+    submit_button = SubmitField(label="Submit")

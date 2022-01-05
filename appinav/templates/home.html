@@ -4,12 +4,19 @@
 
 <form action="" method="post">
     {{ my_amazing_form.csrf_token }}
-    {{ my_amazing_form.first_name.label }}
-    {{ my_amazing_form.first_name }}
-    {{ my_amazing_form.submit_button.label }}
-    {{ my_amazing_form.submit_button }}
+    <p>{{ my_amazing_form.username.label }}</p>
+    <p>{{ my_amazing_form.username }}</p>
+    <p>{{ my_amazing_form.submit_button }}</p>
 </form>
 
-{{ new_var }}
+{% if new_var %}
+    <h2>New User added: {{ new_var }}</h2>
+{% endif %}
+
+<h1>ALL USERS</h1>
+
+{% for user in list_of_users %}
+    <p>{{ user.username }}</p>
+{% endfor %}
 
 {% endblock content %}

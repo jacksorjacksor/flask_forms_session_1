@@ -1,0 +1,11 @@
+{% extends 'layout.html' %}
+{% block content %}
+    <h1>DESC</h1>
+    {% for user in list_of_users_ordered_by_pk_desc %}
+        <p>{{ user.username }}</p>
+    {% endfor %}
+    <h1>ASC</h1>
+    {% for user in list_of_users_ordered_by_pk_asc %}
+        <p>{{ user.username }}</p>
+    {% endfor %}
+{% endblock %}  
