@@ -56,3 +56,10 @@ def order_by():
 def filter_by(my_variable):
     user = User.query.filter_by(username=my_variable).first()
     return render_template("filtered.html", user=user)
+
+
+###########################################################################
+
+@app.route("/bootstrap")
+def bootstrap():
+    return render_template("bootstrap.html")
