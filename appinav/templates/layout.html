@@ -7,6 +7,20 @@
     <title>Document</title>
 </head>
 <body>
+    <div class="flash_messages">
+        <!-- https://flask-login.readthedocs.io/en/latest/#how-it-works -->
+        {% with list_of_flash_messages = get_flashed_messages() %}
+            {% if list_of_flash_messages %}
+                <ul class="flashes">
+                    {% for message in list_of_flash_messages %}
+                    <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+    </div>
+
+
     {% block content %}
         
     {% endblock content %}

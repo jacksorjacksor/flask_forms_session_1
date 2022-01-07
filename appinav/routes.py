@@ -1,7 +1,8 @@
-from flask import render_template
+from flask import render_template, redirect, url_for, flash
 from appinav import app, db
-from appinav.forms import MyForm
+from appinav.forms import MyForm, LoginForm
 from appinav.models import User
+from flask_login import login_user, logout_user
 
 
 @app.route("/", methods=["GET", "POST"])
@@ -11,10 +12,11 @@ def home():
     if my_amazing_form.validate_on_submit():
         new_var = my_amazing_form.username.data
 
-        new_user = User(username=my_amazing_form.username.data)
+        new_user = User(username=my_amazing_form.username.data,email=my_amazing_form.email.data,password=my_amazing_form.password.data)
 
         db.session.add(new_user)
         db.session.commit()
+        flash(f"This user has now been added! {my_amazing_form.username.data}")
     else:
         new_var=None
 
@@ -22,6 +24,34 @@ def home():
     list_of_users = User.query.all()
 
     return render_template("home.html", my_amazing_form=my_amazing_form, new_var=new_var, list_of_users=list_of_users)
+
+# LOGIN DETAILS
+
+@app.route("/login", methods=["GET","POST"])
+def login():
+    my_login_form = LoginForm()
+    
+    if my_login_form.validate_on_submit():
+        user_to_login = User.query.filter_by(email=my_login_form.email.data).first()
+        if user_to_login:
+            login_user(user_to_login)
+            flash(f"FLASH: You have logged in")
+            return redirect(url_for('home'))
+        else:
+            return redirect(url_for('login_error'))
+
+    return render_template("login.html", my_login_form=my_login_form)
+
+@app.route("/error-page")
+def login_error():
+    return "Things did not go well when logging in"
+
+@app.route("/logout")
+def logout():
+    logout_user()
+    flash(f"FLASH: You have logged out")
+    return redirect(url_for('home'))
+
 
 ##### THE FOUR QUERIES OF THE APOCALYPSE
 '''
@@ -62,3 +92,6 @@ def filter_by(my_variable):
 @app.route("/bootstrap")
 def bootstrap():
     return render_template("bootstrap.html")
+
+###########################################################################
+

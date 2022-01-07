@@ -2,6 +2,18 @@
 {% block content %}
     <h1>Home!!</h1>
 
+{% if current_user.is_authenticated %}
+    {{ current_user.email }}
+    <h1>Hi {{ current_user.username }}!</h1>
+    <a href="{{url_for('logout')}}">
+        <h1>Would you like to logout?</h1>
+    </a>
+{% else %}
+    <a href="{{url_for('login')}}">
+        <h1>Would you like to login?</h1>
+    </a>
+{% endif %}
+
 <ul>
     <!-- Dictionaries in Jinja2 -->
     {% for field, list_of_errors in my_amazing_form.errors.items() %}

@@ -5,9 +5,9 @@ db.drop_all()
 
 db.create_all()
 
-user1 = User(username="111")
-user2 = User(username="222")
-user3 = User(username="333")
+user1 = User(username="aaa", email="a@a.a", password="a")
+user2 = User(username="bbb", email="b@b.b", password="b")
+user3 = User(username="ccc", email="c@c.c", password="c")
 
 db.session.add(user1)
 db.session.add(user2)

@@ -2,6 +2,7 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 import os
 from flask_bootstrap import Bootstrap
+from flask_login import LoginManager
 
 app = Flask(__name__)
 Bootstrap(app)
@@ -15,5 +16,8 @@ app.config["SQLALCHEMY_DATABASE_URI"] = f"sqlite:///{os.path.join(basedir,'my_db
 
 # Creates instance of the database
 db = SQLAlchemy(app)
+
+login_manager = LoginManager()
+login_manager.init_app(app)
 
 from appinav import routes

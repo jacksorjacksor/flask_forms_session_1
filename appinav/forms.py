@@ -18,7 +18,7 @@ class MyForm(FlaskForm):
         validators=[
             InputRequired(),
             # Length(min=5, max=9, message="Must be between 5 and 9"),
-            Regexp('^[a-z]{6-10}$', message="Can only use lowercase characters and must be between 6 and 10 characters"),
+            # Regexp('^[a-z]{6-10}$', message="Can only use lowercase characters and must be between 6 and 10 characters"),
             ]
         )
     email = EmailField(
@@ -36,3 +36,16 @@ class MyForm(FlaskForm):
         )
 
     submit_button = SubmitField(label="Submit")
+
+class LoginForm(FlaskForm):
+    email = EmailField(
+        label="Email", 
+        validators=[InputRequired()]
+        )
+
+    password = PasswordField(
+        label="Password", 
+        validators=[InputRequired()]
+        )
+    
+    submit = SubmitField(label="Submit")
