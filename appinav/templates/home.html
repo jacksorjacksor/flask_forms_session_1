@@ -1,18 +1,38 @@
 {% extends 'layout.html' %}
 {% block content %}
-    <h1>Ho!</h1>
+    <h1>Home!!</h1>
+
+<ul>
+    <!-- Dictionaries in Jinja2 -->
+    {% for field, list_of_errors in my_amazing_form.errors.items() %}
+        <!-- https://stackabuse.com/flask-form-validation-with-flask-wtf/ -->
+        <h2>{{ field }}</h2>
+        {% for error in list_of_errors %}
+            <li>
+                {{ error }}
+            </li>
+        {% endfor %}
+    {% endfor %}
+</ul>
 
 <form action="" method="post">
     {{ my_amazing_form.csrf_token }}
     <p>{{ my_amazing_form.username.label }}</p>
     <p>{{ my_amazing_form.username }}</p>
+    <p>{{ my_amazing_form.email.label }}</p>
+    <p>{{ my_amazing_form.email }}</p>
+    <p>{{ my_amazing_form.password.label }}</p>
+    <p>{{ my_amazing_form.password }}</p>
+    <p>{{ my_amazing_form.confirm_password.label }}</p>
+    <p>{{ my_amazing_form.confirm_password }}</p>
     <p>{{ my_amazing_form.submit_button }}</p>
 </form>
 
 {% if new_var %}
-    <h2>New User added: {{ new_var }}</h2>
+<h2>New User added: {{ new_var }}</h2>
 {% endif %}
 
+<h1>**************************</h1>
 <h1>ALL USERS</h1>
 
 {% for user in list_of_users %}

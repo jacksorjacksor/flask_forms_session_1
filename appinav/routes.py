@@ -4,24 +4,24 @@ from appinav.forms import MyForm
 from appinav.models import User
 
 
-# @app.route("/", methods=["GET", "POST"])
-# def home():
-#     my_amazing_form = MyForm()
+@app.route("/", methods=["GET", "POST"])
+def home():
+    my_amazing_form = MyForm()
 
-#     if my_amazing_form.is_submitted():
-#         new_var = my_amazing_form.username.data
+    if my_amazing_form.validate_on_submit():
+        new_var = my_amazing_form.username.data
 
-#         new_user = User(username=my_amazing_form.username.data)
+        new_user = User(username=my_amazing_form.username.data)
 
-#         db.session.add(new_user)
-#         db.session.commit()
-#     else:
-#         new_var=None
+        db.session.add(new_user)
+        db.session.commit()
+    else:
+        new_var=None
 
-#     # All users
-#     list_of_users = User.query.all()
+    # All users
+    list_of_users = User.query.all()
 
-#     return render_template("home.html", my_amazing_form=my_amazing_form, new_var=new_var, list_of_users=list_of_users)
+    return render_template("home.html", my_amazing_form=my_amazing_form, new_var=new_var, list_of_users=list_of_users)
 
 ##### THE FOUR QUERIES OF THE APOCALYPSE
 '''
@@ -34,7 +34,6 @@ from appinav.models import User
 .filter_by() # Returns a list
 '''
 
-@app.route("/")
 @app.route("/all")
 def all():
     list_of_users = User.query.all()
